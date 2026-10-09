@@ -1,0 +1,94 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Una casa con jardín</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&amp;family=Archivo:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#100904}
+a{color:#FFEDD7;text-decoration:none}a:hover{color:#DC5000}
+.vinyl{position:relative;border-radius:50%;box-shadow:0 60px 90px rgba(0,0,0,.6)}
+.disc{position:absolute;inset:0;border-radius:50%;background:repeating-radial-gradient(circle at center,rgba(0,0,0,.2) 0 1px,transparent 1px 3px),radial-gradient(circle at 40% 35%,#2a7a40,#14451f 70%,#0d2e15);animation:spin 40s linear infinite}
+.sheen{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 20deg,transparent,rgba(255,255,255,.2) 8%,transparent 22%,transparent 50%,rgba(255,255,255,.15) 58%,transparent 72%)}
+.vinyl{container-type:size}
+.disc{box-shadow:inset 0 0 0 .6cqw rgba(0,0,0,.35),inset 0 0 0 1.2cqw rgba(255,255,255,.04)}
+.wax{position:absolute;left:28%;top:28%;width:44%;height:44%;border-radius:50%;background:#123d1e;box-shadow:0 0 0 .5cqw rgba(0,0,0,.3),inset 0 0 2cqw rgba(0,0,0,.4)}
+.lbl{position:absolute;left:33%;top:33%;width:34%;height:34%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#b9532a,#8f3a1a);color:#FFEDD7;overflow:hidden}
+.lbl .tt{position:absolute;top:13%;left:0;right:0;text-align:center;font:400 3.1cqw/.95 "Alfa Slab One",Archivo,serif;text-transform:uppercase}
+.lbl .bdg{position:absolute;left:9%;top:47%;font:500 1.1cqw/1 Archivo,sans-serif;text-transform:uppercase;background:#FFEDD7;color:#1d5a2c;padding:.5cqw .7cqw .4cqw;clip-path:polygon(0 30%,50% 0,100% 30%,100% 100%,0 100%);padding-top:.9cqw}
+.lbl .pill{position:absolute;right:9%;top:47.5%;font:500 1.1cqw/1 Archivo,sans-serif;text-transform:uppercase;border:.2cqw solid #FFEDD7;border-radius:2cqw;padding:.35cqw .8cqw}
+.lbl .tl{position:absolute;left:0;right:0;bottom:9%;text-align:center;font:500 1.15cqw/1.35 Archivo,sans-serif;text-transform:uppercase}
+.hole{width:6%;height:6%;border-radius:50%;background:#100904;position:absolute;left:47%;top:47%}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.disc{animation:none}}
+.m{font:400 12px/1.4 Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#6C5F51}
+.h{font:500 clamp(56px,10vw,150px)/.9 Archivo,sans-serif;text-transform:uppercase;margin:0;color:#FFEDD7}
+</style>
+</helmet>
+<div style="background:#100904;color:#FFEDD7;font-family:Archivo,sans-serif;overflow:hidden">
+
+<section style="position:relative;height:900px;max-width:1440px;margin:0 auto;padding:0 48px;box-sizing:border-box">
+<nav style="display:flex;justify-content:space-between;align-items:center;padding-top:32px;font-size:12px;letter-spacing:.14em;text-transform:uppercase">
+<a href="#">Enol</a>
+<div style="display:flex;gap:36px"><a href="#carátula">Carátula</a><a href="#vinilo">Vinilo</a><a href="#lomo">Contraportada</a></div>
+<span style="color:{{accent}}">LP · 12″</span>
+</nav>
+<div class="vinyl" style="position:absolute;right:-8%;top:110px;width:760px;height:760px"><div class="disc"><div class="wax"></div><div class="lbl"><div class="tt">Una casa<br>con jardín</div><div class="bdg">Cara A</div><div class="pill">Enol</div><div class="tl">1 Lista de cosas que me hacen feliz<br>2 Las nubes<br>3 Bodas de plata<br>4 Y qué bonito<br>5 Peter Pan<br>6 ¿Sales hoy?</div></div><div class="hole"></div></div><div class="sheen"></div></div>
+<div style="position:absolute;left:48px;bottom:56px;max-width:80%">
+<div class="m" style="color:{{accent}};margin-bottom:20px">Álbum · Edición en vinilo verde</div>
+<h1 class="h">Una casa<br>con jardín</h1>
+</div>
+<div class="m" style="position:absolute;right:48px;bottom:56px;text-align:right">Enol<br>Scroll ↓</div>
+</section>
+
+<section id="carátula" style="max-width:1440px;margin:0 auto;padding:120px 48px;box-sizing:border-box;border-top:1px dashed #40372E">
+<div style="display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:center">
+<div>
+<div class="m" style="color:{{accent}}">01 — Carátula</div>
+<h2 class="h" style="font-size:clamp(40px,6vw,88px);margin:24px 0">Un jardín<br>hecho<br>portada</h2>
+<p style="font-weight:300;line-height:1.6;max-width:360px;color:#FFEDD7">Funda en verde profundo con el título en óxido. El vinilo asoma por el lateral, como si la casa se abriera al jardín.</p>
+</div>
+<div style="position:relative;height:620px">
+<div class="vinyl" style="position:absolute;left:300px;top:60px;width:480px;height:480px"><div class="disc"><div class="wax"></div><div class="lbl"><div class="tt">Una casa<br>con jardín</div><div class="bdg">Cara A</div><div class="pill">Enol</div><div class="tl">1 Lista de cosas que me hacen feliz<br>2 Las nubes<br>3 Bodas de plata<br>4 Y qué bonito<br>5 Peter Pan<br>6 ¿Sales hoy?</div></div><div class="hole"></div></div><div class="sheen"></div></div>
+<img src="./assets/89ddf0db6ba941e411b4960be654191e.jpg" alt="Carátula de Una casa con jardín" style="position:absolute;left:0;top:30px;width:540px;height:540px;object-fit:cover;box-shadow:0 50px 80px rgba(0,0,0,.6)">
+</div>
+</div>
+</section>
+
+<section id="vinilo" style="max-width:1440px;margin:0 auto;padding:120px 48px;box-sizing:border-box;border-top:1px dashed #40372E;text-align:center">
+<div class="m" style="color:{{accent}}">02 — Vinilo</div>
+<div style="display:flex;justify-content:center;gap:32px;align-items:center;margin-top:48px;text-align:left">
+<div class="vinyl" style="width:600px;height:600px"><div class="disc"><div class="wax"></div><div class="lbl"><div class="tt">Una casa<br>con jardín</div><div class="bdg">Cara B</div><div class="pill">Enol</div><div class="tl">1 Amalfi<br>2 Claudia<br>3 Yo soy de aquí<br>4 Una ventana<br>5 Dellafuente<br>6 Serenata<br>7 Una casa con jardín</div></div><div class="hole"></div></div><div class="sheen"></div></div>
+
+</div>
+</section>
+
+<section id="lomo" style="max-width:1440px;margin:0 auto;padding:120px 48px;box-sizing:border-box;border-top:1px dashed #40372E">
+<div class="m" style="color:{{accent}}">03 — Contraportada y lomo</div>
+<div style="display:flex;gap:48px;align-items:flex-start;margin-top:48px">
+<img src="./assets/6d18cbd424cd786c7d27fed01fd5cd3f.jpg" alt="Contraportada" style="width:460px;height:460px;object-fit:cover;box-shadow:0 40px 70px rgba(0,0,0,.6)">
+
+<div style="flex:1;border-top:1px dashed #40372E;padding-top:20px"><h2 class="h" style="font-size:clamp(36px,5vw,72px)">Cada<br>detalle,<br>en verde</h2></div>
+</div>
+</section>
+
+<footer style="max-width:1440px;margin:0 auto;padding:40px 48px 56px;box-sizing:border-box;border-top:1px dashed #40372E;display:flex;justify-content:space-between"><span class="m">Enol — Una casa con jardín</span><span class="m">LP · Vinilo verde</span></footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#DC5000"},"$preview":{"width":1440,"height":3400}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#DC5000' };
+}
+}
+</script>
+</body>
+</html>
