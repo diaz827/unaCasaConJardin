@@ -1,4 +1,4 @@
-# Una casa con jardín — design reference
+﻿# Una casa con jardín — design reference
 
 This is a design mockup created in a visual design tool, exported as a
 standalone page. Treat it as a REFERENCE MOCKUP, not production code:
@@ -9,7 +9,7 @@ rather than copy wholesale.
 
 ## Contents
 
-- `Main.dc.html` — the artboard (a Design Component: an `<x-dc>`
+- `index.html` — the artboard (a Design Component: an `<x-dc>`
   template + a small logic class). The values to replicate live in its
   inline `style="…"` attributes and the `<helmet><style>` block.
 - `assets/` — files uploaded to the design (images, fonts, media)
@@ -25,5 +25,5 @@ reference a script puts together while the page runs (for example
 
 ## Viewing
 
-Serve the folder (e.g. `python3 -m http.server`) and open `Main.dc.html`;
+Serve the folder (e.g. `python3 -m http.server`) and open `index.html`;
 some browsers block the scripts over file://.
