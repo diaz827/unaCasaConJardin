@@ -7,6 +7,7 @@
 <script src="./vendor/react.js"></script>
 <script src="./vendor/react-dom.js"></script>
 <script src="./support.js"></script>
+<script src="./tocadiscos.js"></script>
 </head>
 <body>
 <x-dc>
@@ -22,16 +23,81 @@ a{color:#FFEDD7;text-decoration:none}a:hover{color:#DC5000}
 .vinyl{container-type:size}
 .disc{box-shadow:inset 0 0 0 .6cqw rgba(0,0,0,.35),inset 0 0 0 1.2cqw rgba(255,255,255,.04)}
 .wax{position:absolute;left:28%;top:28%;width:44%;height:44%;border-radius:50%;background:#123d1e;box-shadow:0 0 0 .5cqw rgba(0,0,0,.3),inset 0 0 2cqw rgba(0,0,0,.4)}
-.lbl{position:absolute;left:33%;top:33%;width:34%;height:34%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#b9532a,#8f3a1a);color:#FFEDD7;overflow:hidden}
-.lbl .tt{position:absolute;top:13%;left:0;right:0;text-align:center;font:400 3.1cqw/.95 "Alfa Slab One",Archivo,serif;text-transform:uppercase}
-.lbl .bdg{position:absolute;left:9%;top:47%;font:500 1.1cqw/1 Archivo,sans-serif;text-transform:uppercase;background:#FFEDD7;color:#1d5a2c;padding:.5cqw .7cqw .4cqw;clip-path:polygon(0 30%,50% 0,100% 30%,100% 100%,0 100%);padding-top:.9cqw}
-.lbl .pill{position:absolute;right:9%;top:47.5%;font:500 1.1cqw/1 Archivo,sans-serif;text-transform:uppercase;border:.2cqw solid #FFEDD7;border-radius:2cqw;padding:.35cqw .8cqw}
-.lbl .tl{position:absolute;left:0;right:0;bottom:9%;text-align:center;font:500 1.15cqw/1.35 Archivo,sans-serif;text-transform:uppercase}
+.disc > .lbl{position:absolute;left:33%;top:33%;width:34%;height:34%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#b9532a,#8f3a1a);color:#FFEDD7;overflow:hidden}
+.disc > .lbl .tt{position:absolute;top:13%;left:0;right:0;text-align:center;font:400 3.1cqw/.95 "Alfa Slab One",Archivo,serif;text-transform:uppercase}
+.disc > .lbl .bdg{position:absolute;left:9%;top:47%;font:500 1.1cqw/1 Archivo,sans-serif;text-transform:uppercase;background:#FFEDD7;color:#1d5a2c;padding:.5cqw .7cqw .4cqw;clip-path:polygon(0 30%,50% 0,100% 30%,100% 100%,0 100%);padding-top:.9cqw}
+.disc > .lbl .pill{position:absolute;right:9%;top:47.5%;font:500 1.1cqw/1 Archivo,sans-serif;text-transform:uppercase;border:.2cqw solid #FFEDD7;border-radius:2cqw;padding:.35cqw .8cqw}
+.disc > .lbl .tl{position:absolute;left:0;right:0;bottom:9%;text-align:center;font:500 1.15cqw/1.35 Archivo,sans-serif;text-transform:uppercase}
 .hole{width:6%;height:6%;border-radius:50%;background:#100904;position:absolute;left:47%;top:47%}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.disc{animation:none}}
 .m{font:400 12px/1.4 Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#6C5F51}
 .h{font:500 clamp(56px,10vw,150px)/.9 Archivo,sans-serif;text-transform:uppercase;margin:0;color:#FFEDD7}
+
+/* ===== Tocadiscos ===== */
+.tt-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;margin-top:48px}
+.tt-stage{position:relative;width:100%;max-width:600px;margin:0 auto;aspect-ratio:6/5;container-type:inline-size}
+.tt-parallax{position:absolute;inset:0;will-change:transform}
+.tt-deck{position:absolute;left:0;right:0;top:29%;bottom:0;background:linear-gradient(180deg,#efdcc0,#d9bf95);border-radius:12px;box-shadow:0 34px 64px rgba(0,0,0,.5),inset 0 2px 0 rgba(255,255,255,.45);z-index:2;overflow:hidden}
+.tt-deck::before{content:"";position:absolute;inset:4% 5% 6% 5%;background:#181512;border-radius:9px;box-shadow:inset 0 8px 22px rgba(0,0,0,.65)}
+.tt-platter{position:absolute;left:11%;top:6.75%;width:50%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#2b2825 58%,#100e0c);display:grid;place-items:center;box-shadow:inset 0 0 0 .7cqw rgba(0,0,0,.55),0 2cqw 4cqw rgba(0,0,0,.4)}
+.tt-platter::after{content:"";position:absolute;left:47.5%;top:47.5%;width:5%;height:5%;border-radius:50%;background:#3a352f;box-shadow:0 0 0 .3cqw rgba(0,0,0,.5)}
+.tt-vinyl-wrap{position:relative;width:86%;height:86%;z-index:1}
+.tt-vinyl{width:100%;height:100%}
+.tt-vinyl .disc{animation:none}
+.tt-rec{position:absolute;right:8%;top:34%;width:16%;aspect-ratio:1.42;border-radius:1cqw;background:linear-gradient(160deg,#211d19,#100d0b);box-shadow:inset 0 0 0 .4cqw rgba(255,255,255,.05),0 1cqw 2cqw rgba(0,0,0,.4)}
+.tt-rec span{position:absolute;left:10%;top:16%;font:500 1.5cqw/1 Archivo,sans-serif;color:#6C5F51;letter-spacing:.06em}
+.tt-knob{position:absolute;right:9%;bottom:16%;width:8cqw;height:8cqw;border-radius:50%;background:radial-gradient(circle at 36% 30%,#efe7da,#b9ad99);box-shadow:0 .6cqw 1.4cqw rgba(0,0,0,.45),inset 0 0 0 .3cqw rgba(0,0,0,.15)}
+.tt-knob::after{content:"";position:absolute;left:47%;top:12%;width:6%;height:34%;background:#5a5044;border-radius:1cqw;transform-origin:50% 158%}
+.tt-arm{position:absolute;left:73%;top:23%;width:0;height:0;z-index:6;cursor:grab;touch-action:none;outline:none}
+.tt-arm.dragging{cursor:grabbing}
+.tt-arm:focus-visible .tt-arm-pivot{box-shadow:0 0 0 .55cqw var(--accent,#DC5000)}
+.tt-arm-bar{position:absolute;right:0;top:-1.15cqw;width:40cqw;height:2.3cqw;transform-origin:100% 50%;transform:rotate(calc(var(--arm,-62) * 1deg));will-change:transform;background:linear-gradient(180deg,#575047,#3a352e);border-radius:1.15cqw;box-shadow:0 .35cqw .9cqw rgba(0,0,0,.45)}
+.tt-anim .tt-arm-bar{transition:transform .85s cubic-bezier(.2,.7,.2,1)}
+.tt-arm-bar::before{content:"";position:absolute;left:0;top:50%;width:9cqw;height:3.6cqw;transform:translateY(-50%);background:linear-gradient(180deg,#332e28,#1c1a16);border-radius:.8cqw;box-shadow:0 .4cqw 1cqw rgba(0,0,0,.4)}
+.tt-cart{position:absolute;left:-1.2cqw;top:50%;width:3.4cqw;height:3.4cqw;transform:translateY(-50%);background:var(--accent,#DC5000);border-radius:.5cqw;box-shadow:0 .3cqw .8cqw rgba(0,0,0,.4)}
+.tt-arm-pivot{position:absolute;left:-2.6cqw;top:-2.6cqw;width:5.2cqw;height:5.2cqw;border-radius:50%;background:radial-gradient(circle at 35% 30%,#3c362f,#191713);box-shadow:0 .7cqw 1.6cqw rgba(0,0,0,.55)}
+.tt-arm-lift{position:absolute;left:52%;top:82%;width:4.5cqw;height:7cqw;background:linear-gradient(180deg,#2a2724,#171512);border-radius:.6cqw;z-index:5;box-shadow:0 .5cqw 1.2cqw rgba(0,0,0,.4)}
+.tt-panel{border-top:1px dashed #40372E;padding-top:22px}
+.tt-now{min-height:2.6em}
+.tt-now .lbl{color:#6C5F51}
+.tt-now .num{color:var(--accent,#DC5000)}
+.tt-now .ttl{font-weight:300;font-size:22px;letter-spacing:.01em;text-transform:none;color:#FFEDD7}
+.tt-now .col{color:#6C5F51}
+.tt-progress{margin:22px 0 6px;height:2px;background:#2a241d;border-radius:2px;overflow:hidden;cursor:pointer}
+.tt-bar{height:100%;width:0;background:var(--accent,#DC5000);transition:width .15s linear}
+.tt-time{display:flex;justify-content:space-between;color:#6C5F51}
+.tt-ctrls{display:flex;align-items:center;gap:18px;margin-top:22px}
+.tt-btn{font:400 12px/1 Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#FFEDD7;background:transparent;border:1px solid #40372E;border-radius:2px;padding:11px 15px;cursor:pointer;transition:border-color .2s,color .2s}
+.tt-btn:hover{border-color:var(--accent,#DC5000);color:var(--accent,#DC5000)}
+.tt-btn:focus-visible{outline:2px solid var(--accent,#DC5000);outline-offset:2px}
+.tt-btn--play{border-color:var(--accent,#DC5000);color:var(--accent,#DC5000)}
+
+/* Entrada con scroll (solo si JS activo: .tt-anim) */
+.tt-anim .tt-head{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.tt-anim .tt-parallax{opacity:0;transform:translateY(48px) scale(.92);transition:opacity .9s cubic-bezier(.2,.7,.2,1) .28s,transform .9s cubic-bezier(.2,.7,.2,1) .28s,box-shadow .9s ease .28s}
+.tt-anim .tt-vinyl-wrap{opacity:0}
+.tt-anim .tt-arm{opacity:0}
+.tt-anim .tt-panel > *{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.tt-anim.tt-in .tt-head{opacity:1;transform:none}
+.tt-anim.tt-in .tt-parallax{opacity:1;transform:none;box-shadow:0 40px 80px rgba(0,0,0,.6)}
+.tt-anim.tt-in .tt-vinyl-wrap{animation:ttDrop .95s cubic-bezier(.3,.6,.2,1) .8s both}
+.tt-anim.tt-in .tt-arm{opacity:1;transition:opacity .5s ease 1.4s}
+.tt-anim.tt-in .tt-panel > *{opacity:1;transform:none}
+.tt-anim.tt-in .tt-panel > *:nth-child(1){transition-delay:1.85s}
+.tt-anim.tt-in .tt-panel > *:nth-child(2){transition-delay:1.97s}
+.tt-anim.tt-in .tt-panel > *:nth-child(3){transition-delay:2.09s}
+.tt-anim.tt-in .tt-panel > *:nth-child(4){transition-delay:2.21s}
+.tt-anim.tt-in .tt-panel > *:nth-child(5){transition-delay:2.33s}
+@keyframes ttDrop{0%{opacity:0;transform:translateY(-64px) scale(1.14)}55%{opacity:1;transform:translateY(8px) scale(.97)}80%{transform:translateY(-2px) scale(1.01)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.tt-anim.tt-ready .tt-arm-bar{transition:none}
+@media (prefers-reduced-motion:reduce){
+.tt-anim .tt-head,.tt-anim .tt-parallax,.tt-anim .tt-panel > *{transition:opacity .3s ease !important;transform:none !important}
+.tt-anim .tt-vinyl-wrap{opacity:1}
+.tt-anim .tt-arm{opacity:1;transition:opacity .3s ease}
+.tt-anim.tt-in .tt-vinyl-wrap{animation:none;opacity:1}
+.tt-anim.tt-in .tt-head,.tt-anim.tt-in .tt-parallax,.tt-anim.tt-in .tt-panel > *{opacity:1;transform:none;transition-delay:0s !important}
+}
 </style>
 </helmet>
 <div style="background:#100904;color:#FFEDD7;font-family:Archivo,sans-serif;overflow:hidden">
@@ -39,7 +105,7 @@ a{color:#FFEDD7;text-decoration:none}a:hover{color:#DC5000}
 <section style="position:relative;height:900px;max-width:1440px;margin:0 auto;padding:0 48px;box-sizing:border-box">
 <nav style="display:flex;justify-content:space-between;align-items:center;padding-top:32px;font-size:12px;letter-spacing:.14em;text-transform:uppercase">
 <a href="#">Enol</a>
-<div style="display:flex;gap:36px"><a href="#carátula">Carátula</a><a href="#vinilo">Setlist</a><a href="#lomo">Contraportada</a></div>
+<div style="display:flex;gap:36px"><a href="#carátula">Carátula</a><a href="#vinilo">Setlist</a><a href="#tocadiscos">Tocadiscos</a><a href="#lomo">Contraportada</a></div>
 <span style="color:{{accent}}">LP · 12″</span>
 </nav>
 <div class="vinyl" style="position:absolute;right:-8%;top:110px;width:760px;height:760px"><div class="disc"><div class="wax"></div><div class="lbl"><div class="tt">Una casa<br>con jardín</div><div class="bdg">Cara A</div><div class="pill">Enol</div><div class="tl">1 Lista de cosas que me hacen feliz<br>2 Las nubes<br>3 Bodas de plata<br>4 Y qué bonito<br>5 Peter Pan<br>6 ¿Sales hoy?</div></div><div class="hole"></div></div><div class="sheen"></div></div>
@@ -88,8 +154,48 @@ a{color:#FFEDD7;text-decoration:none}a:hover{color:#DC5000}
 </div>
 </section>
 
+<section id="tocadiscos" style="max-width:1440px;margin:0 auto;padding:120px 48px;box-sizing:border-box;border-top:1px dashed #40372E">
+<div class="tt-head">
+<div class="m" style="color:{{accent}}">03 — Tocadiscos</div>
+<h2 class="h" style="font-size:clamp(40px,6vw,88px);margin:24px 0">Pon el<br>disco</h2>
+</div>
+<div class="tt-grid">
+<div class="tt-stage">
+<div class="tt-parallax">
+<div class="tt-deck">
+<div class="tt-platter">
+<div class="tt-vinyl-wrap">
+<div class="vinyl tt-vinyl"><div class="disc"><div class="wax"></div><div class="lbl"><div class="tt">Una casa<br>con jardín</div><div class="bdg">Enol</div><div class="pill">LP</div><div class="tl">12 canciones</div></div><div class="hole"></div></div><div class="sheen"></div></div>
+</div>
+</div>
+<div class="tt-rec"><span>Cara A/B</span></div>
+<div class="tt-knob"></div>
+<div class="tt-arm-lift"></div>
+<div class="tt-arm" id="ttArm" role="slider" tabindex="0" aria-label="Bajar o subir la púa del tocadiscos" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Púa levantada" aria-orientation="horizontal">
+<div class="tt-arm-pivot"></div>
+<div class="tt-arm-bar"><span class="tt-cart"></span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tt-panel">
+<div class="tt-now" id="ttNow" aria-live="polite">
+<div class="m lbl">Sonando ahora</div>
+<div class="ttl" id="ttTitle">Baja la púa para empezar</div>
+</div>
+<div class="tt-progress" id="ttProgress" role="progressbar" aria-label="Progreso de la canción" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="tt-bar" id="ttBar"></div></div>
+<div class="tt-time m"><span id="ttCur">0:00</span><span id="ttDur">0:00</span></div>
+<div class="tt-ctrls">
+<button class="tt-btn" id="ttPrev" type="button" aria-label="Canción anterior">◄ Anterior</button>
+<button class="tt-btn tt-btn--play" id="ttArmBtn" type="button" aria-label="Bajar la púa y reproducir">Bajar púa</button>
+<button class="tt-btn" id="ttNext" type="button" aria-label="Canción siguiente">Siguiente ►</button>
+</div>
+</div>
+</div>
+</section>
+
 <section id="lomo" style="max-width:1440px;margin:0 auto;padding:120px 48px;box-sizing:border-box;border-top:1px dashed #40372E">
-<div class="m" style="color:{{accent}}">03 — Contraportada y lomo</div>
+<div class="m" style="color:{{accent}}">04 — Contraportada y lomo</div>
 <div style="display:flex;gap:48px;align-items:flex-start;margin-top:48px">
 <img src="./assets/contraPortada.jpg" alt="Contraportada" style="width:460px;height:460px;object-fit:cover;box-shadow:0 40px 70px rgba(0,0,0,.6)">
 
@@ -104,6 +210,15 @@ a{color:#FFEDD7;text-decoration:none}a:hover{color:#DC5000}
 class Component extends DCLogic {
 renderVals() {
 return { accent: this.props.accent ?? '#DC5000' };
+}
+componentDidMount() {
+if (window.initTocadiscos) window.initTocadiscos(this.props.accent ?? '#DC5000');
+}
+componentDidUpdate() {
+if (window.refreshTocadiscos) window.refreshTocadiscos();
+}
+componentWillUnmount() {
+if (window.destroyTocadiscos) window.destroyTocadiscos();
 }
 }
 </script>
